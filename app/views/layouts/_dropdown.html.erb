@@ -1,0 +1,36 @@
+    <% if user_signed_in? %>
+  <div class="btn-group">
+    <%= link_to "What's New", announcements_path,
+                method: :get,
+                class: "text-dark" %>
+  </div>
+<% end %>
+<div class="btn-group mr-3">
+  <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Account
+  </button>
+  <div class="dropdown-menu dropdown-menu-left">
+    <!-- Dropdown menu links -->
+    <% if user_signed_in? %>
+      <%= link_to "Account", edit_user_registration_url, class: "dropdown-item" %>
+      <%= link_to "Sign Out",  destroy_user_session_path(), 
+                class: "dropdown-item" %>
+    <% else %>
+      <%= link_to "Sign In", new_user_session_path,
+                method: :get,
+                class: "dropdown-item" %>
+    <% end %>
+    <% if user_signed_in? && current_user.admin? %>
+      <div class="dropdown-divider"></div>
+      <%= link_to "Admin", admin_root_path,
+                method: :get,
+                class: "dropdown-item" %>
+      <%= link_to "Sidekiq",  admin_sidekiq_web_path,
+                method: :get,
+                class: "dropdown-item" %>
+      <%= link_to "Letter Opener", letter_opener_web_path,
+                method: :get,
+                class: "dropdown-item" %>
+    <% end %>
+  </div>
+</div>

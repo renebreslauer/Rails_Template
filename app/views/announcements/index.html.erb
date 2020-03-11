@@ -1,0 +1,12 @@
+<% if @announcements.count > 0 %>
+  <% @announcements.each do |announcement| %>
+    <div class="card py-5 m-4 mx-auto">
+      <h5 class="card-title"><%= announcement.title %></h5>
+      <p class="card-text"><%= announcement.description %></p>
+    </div>
+  <% end %>
+<% else %>
+  <div>
+    <div>Check Back Soon For Updates</div>
+  </div>
+<% end %>
